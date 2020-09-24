@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Upload, Modal, Input } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
-// import fetch from 'isomorphic-unfetch'
 
+// getBase64
 function getBase64(file) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -18,8 +18,10 @@ const PicturesWall = ({uploadImage}) => {
   const [previewTitle, setPreviewTitle] = useState("");
   const [fileList, setFileList] = useState([]);
 
+  // handle cancel
   const handleCancel = () => setPreviewVisible(false);
 
+  // handle preview image click show modal
   const handlePreview = async (file) => {
     if (!file.url && !file.preview) {
       file.preview = await getBase64(file.originFileObj);
@@ -32,11 +34,10 @@ const PicturesWall = ({uploadImage}) => {
     );
   };
 
+  // handle upload Image
 	const handleChange = (e) => {  
     setFileList(e.fileList)
   };
-
-
 
   const uploadButton = (
     <div>

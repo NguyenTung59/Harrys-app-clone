@@ -5,6 +5,7 @@ import UploadImage from "./forms/UploadImage";
 import { Button, Form, Input, Row, Col, Spin, Alert } from "antd";
 import { useRouter } from "next/router";
 import RichText from "./forms/RichText";
+import Https from './https/port'
 
 const AddProduct = ({ products }) => {
   const initialImage = {
@@ -46,7 +47,7 @@ const AddProduct = ({ products }) => {
   // create product
   const createProduct = async () => {
     try {
-      const res = await fetch("https://harrys-app-clone.vercel.app/api/products", {
+      const res = await fetch(`${Https}/api/products`, {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -237,7 +238,7 @@ const AddProduct = ({ products }) => {
 };
 
 AddProduct.getInitialProps = async () => {
-  const res = await fetch("https://harrys-app-clone.vercel.app/api/products");
+  const res = await fetch(`${Https}/api/products`);
   const { data } = await res.json();
 
   return { products: data };

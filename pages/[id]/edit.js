@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import RichText from "../formEdit/RichText";
 import Layout from "../../components/Layout";
 import UploadImage from "../formEdit/UploadImage";
+import Https from '../https/port'
 
 
 const EditProduct = ({ product }) => {
@@ -37,7 +38,7 @@ const EditProduct = ({ product }) => {
   // create product
   const updateProduct = async () => {
     try {
-      const res = await fetch(`https://harrys-app-clone.vercel.app/api/products/${router.query.id}`, {
+      const res = await fetch(`${Https}/api/products/${router.query.id}`, {
         method: "PUT",
         headers: {
           Accept: "application/json",
@@ -230,7 +231,7 @@ const EditProduct = ({ product }) => {
 };
 
 EditProduct.getInitialProps = async ({query: {id}}) => {
-  const res = await fetch(`https://harrys-app-clone.vercel.app/${id}`);
+  const res = await fetch(`${Https}/${id}`);
   const { data } = await res.json();
 
   return { product: data };

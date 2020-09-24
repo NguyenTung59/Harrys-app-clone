@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import fetch from "isomorphic-unfetch";
 import { Table, Button, Popconfirm } from "antd";
 import { useRouter } from "next/router";
+import Https from '../https/port'
 
 const UserTable = (props) => {
   const [isDeleting, setIsDeleting] = useState(false);
@@ -19,7 +20,7 @@ const UserTable = (props) => {
   const deleteProduct = async (id) => {
     try {
       const deleted = await fetch(
-        `https://harrys-app-clone.vercel.app/api/products/${id}`,
+        `${Https}/api/products/${id}`,
         {
           method: "Delete",
         }

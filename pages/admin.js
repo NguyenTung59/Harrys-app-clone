@@ -3,6 +3,7 @@ import Link from 'next/link'
 import ProductTable from "./tables/ProductTable";
 import Layout from '../components/Layout'
 import { Button, Row } from "antd";
+import Https from './https/port'
 
 const Admin = ({ products }) => {
 
@@ -25,7 +26,7 @@ const Admin = ({ products }) => {
 };
 
 Admin.getInitialProps = async () => {
-  const res = await fetch("https://harrys-app-clone.vercel.app/api/products");
+  const res = await fetch(`${Https}/api/products`);
   const { data } = await res.json();
   return { products: data };
 };
