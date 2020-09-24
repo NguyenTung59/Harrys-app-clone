@@ -5,7 +5,7 @@ import UploadImage from "./forms/UploadImage";
 import { Button, Form, Input, Row, Col, Spin, Alert } from "antd";
 import { useRouter } from "next/router";
 import RichText from "./forms/RichText";
-import {Https} from './https/port'
+const Https = "https://harrys-app-clone.vercel.app";
 
 const AddProduct = ({ products }) => {
   const initialImage = {

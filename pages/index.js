@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import fetch from "isomorphic-unfetch";
 import HomePage from "../components/home/HomePage";
 import HarrysBody from "../components/harrys/index";
-import {Https} from './https/port'
+const Https = "https://harrys-app-clone.vercel.app";
 
 const Home = ({ Data }) => {
   // check click box cart
