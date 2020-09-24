@@ -3,7 +3,7 @@ import React from 'react';
 const ActiveThumbnailWindow = ({activeThumbnail}) => {
 	return (
 		<div style={styles}>
-			<img src={activeThumbnail.url} style={ImageStyle} alt="#" />
+			<img src={activeThumbnail ? activeThumbnail.url : null} style={ImageStyle} alt="#" />
 		</div>
 	);
 };

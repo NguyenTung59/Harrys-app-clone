@@ -230,7 +230,7 @@ const EditProduct = ({ product }) => {
 };
 
 EditProduct.getInitialProps = async ({query: {id}}) => {
-  const res = await fetch(`https://harrys-app-clone.vercel.app//${id}`);
+  const res = await fetch(`https://harrys-app-clone.vercel.app/${id}`);
   const { data } = await res.json();
 
   return { product: data };

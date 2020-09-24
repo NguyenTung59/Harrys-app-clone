@@ -9,19 +9,19 @@ const Home = ({ Data }) => {
   const [clicked, setClicked] = useState(false);
   // list products get api
   const [products, setProducts] = useState(Data);
-  //index of product in list products
-  const [activeIndex, setActiveIndex] = useState(
-    products.length > 0 ? products.length - 1 : 0
-  );
+  
   // current product
   const [currentProduct, setCurrentProduct] = useState(
     products.length > 0 ? products[products.length - 1] : products[0]
+  );
+  //index of product in list products
+  const [activeIndex, setActiveIndex] = useState(
+    currentProduct.imgUrl.length > 0 ? currentProduct.imgUrl.length - 1 : 0
   );
   // list url of product
   const [currentImage, setCurrentImage] = useState(
     currentProduct.imgUrl[activeIndex]
   );
-
   //count
   const [count, setCount] = useState(1);
   const [currentCount, setCurrentCount] = useState(0);
