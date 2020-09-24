@@ -1,4 +1,5 @@
 
 // domain or port
-export default Port = "https://harrys-app-clone.vercel.app"
+export const Port = "https://harrys-app-clone.vercel.app"
+
 
