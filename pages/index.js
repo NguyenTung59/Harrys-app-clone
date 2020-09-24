@@ -1,28 +1,111 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import Head from "next/head";
+import React, { useState } from "react";
+import fetch from "isomorphic-unfetch";
+import HomePage from "../components/home/HomePage";
+import HarrysBody from "../components/harrys/index";
 
-export default function Home() {
+const Home = ({ Data }) => {
+  // check click box cart
+  const [clicked, setClicked] = useState(false);
+  // list products get api
+  const [products, setProducts] = useState(Data);
+  //index of product in list products
+  const [activeIndex, setActiveIndex] = useState(
+    products.length > 0 ? products.length - 1 : 0
+  );
+  // current product
+  const [currentProduct, setCurrentProduct] = useState(
+    products.length > 0 ? products[products.length - 1] : products[0]
+  );
+  // list url of product
+  const [currentImage, setCurrentImage] = useState(
+    currentProduct.imgUrl[activeIndex]
+  );
+
+  //count
+  const [count, setCount] = useState(1);
+  const [currentCount, setCurrentCount] = useState(0);
+  const [total, setTotal] = useState(0);
+
+  // Decrement Count
+  const decrementCount = () => {
+    setCount(count > 0 ? (prevCount) => prevCount - 1 : 0);
+  };
+  // Increment count
+  const incrementCount = () => {
+    setCount(count < 0 ? 0 : (prevCount) => prevCount + 1);
+  };
+
+  // handle change main image
+  const handleChangeImage = (e) => {
+    const newActiveIndex = e.target.getAttribute("data-index");
+    setActiveIndex(newActiveIndex);
+    setCurrentImage(currentProduct.imgUrl[newActiveIndex]);
+  };
+
+  // add product
+  const addToCart = () => {
+    setCurrentProduct(products[activeIndex]);
+    setCurrentCount((prevCount) => prevCount + count);
+    setTotal(currentCount * currentProduct);
+  };
+
+  // remove product
+  const removeProduct = () => {
+    setCurrentCount(currentCount > 0 ? (prevCount) => prevCount - 1 : 0);
+  };
+
+  // click box cart
+  const handleClickBox = () => {
+    setClicked(!clicked);
+  };
+
+  // close box cart
+  const handleCloseBox = () => {
+    clicked == true ? setClicked(false) : console.log(false);
+  };
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
         <title>Harrys App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      <main className={styles.main}>
-        <h1>Harrys App</h1>
+      <main className="page-harrys">
+        <div>
+          {/* harrys page  */}
+          {/* <AppHarrys /> */}
+          <HomePage
+            clicked={clicked}
+            handleClickBox={handleClickBox}
+            currentProduct={currentProduct}
+            currentImage={currentImage}
+            count={currentCount}
+            removeProduct={removeProduct}
+            total={total}
+          />
+          <HarrysBody
+            onClick={handleCloseBox}
+            setClicked={setClicked}
+            addToCart={addToCart}
+            decrementCount={decrementCount}
+            incrementCount={incrementCount}
+            currentImage={currentImage}
+            currentProduct={currentProduct}
+            handleChangeImage={handleChangeImage}
+            count={count}
+          />
+        </div>
       </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
     </div>
-  )
-}
+  );
+};
+
+Home.getInitialProps = async () => {
+  const res = await fetch(
+    "https://harrys-app-clone.vercel.app/api/products"
+  );
+  const { data } = await res.json();
+  return { Data: data };
+};
+
+export default Home;
