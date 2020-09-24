@@ -3,7 +3,7 @@ import Link from 'next/link'
 import ProductTable from "./tables/ProductTable";
 import Layout from '../components/Layout'
 import { Button, Row } from "antd";
-import Https from './https/port'
+import {Https} from './https/port'
 
 const Admin = ({ products }) => {
 

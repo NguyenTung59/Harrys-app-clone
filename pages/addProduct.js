@@ -5,7 +5,7 @@ import UploadImage from "./forms/UploadImage";
 import { Button, Form, Input, Row, Col, Spin, Alert } from "antd";
 import { useRouter } from "next/router";
 import RichText from "./forms/RichText";
-import Https from './https/port'
+import {Https} from './https/port'
 
 const AddProduct = ({ products }) => {
   const initialImage = {

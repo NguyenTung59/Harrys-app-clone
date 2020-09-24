@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import RichText from "../formEdit/RichText";
 import Layout from "../../components/Layout";
 import UploadImage from "../formEdit/UploadImage";
-import Https from '../https/port'
+import {Https} from '../https/port'
 
 
 const EditProduct = ({ product }) => {
