@@ -7,7 +7,6 @@ import Layout from "../../components/Layout";
 import UploadImage from "../formEdit/UploadImage";
 import {Https} from '../https/port'
 
-
 const EditProduct = ({ product }) => {
   const [dataTime] = useState(new Date().toLocaleDateString("en-GB"));
   const [form, setForm] = useState({
