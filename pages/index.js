@@ -4,13 +4,14 @@ import fetch from "isomorphic-unfetch";
 import HomePage from "../components/home/HomePage";
 import HarrysBody from "../components/harrys/index";
 const Https = "https://harrys-app-clone.vercel.app";
+// const Https = "http://localhost:3000";
 
 const Home = ({ Data }) => {
   // check click box cart
   const [clicked, setClicked] = useState(false);
   // list products get api
   const [products, setProducts] = useState(Data);
-  
+
   // current product
   const [currentProduct, setCurrentProduct] = useState(
     products.length > 0 ? products[products.length - 1] : products[0]
@@ -68,13 +69,12 @@ const Home = ({ Data }) => {
   return (
     <div>
       <Head>
-        <title>Harrys App</title>
-        <link rel="icon" href="/favicon.ico" />
+        <title> Harrys App </title> <link rel="icon" href="/favicon.ico " />
       </Head>
       <main className="page-harrys">
         <div>
-          {/* harrys page  */}
-          {/* <AppHarrys /> */}
+          
+          {/* harrys page  */} {/* <AppHarrys /> */}
           <HomePage
             clicked={clicked}
             handleClickBox={handleClickBox}
@@ -102,9 +102,7 @@ const Home = ({ Data }) => {
 };
 
 Home.getInitialProps = async () => {
-  const res = await fetch(
-    `${Https}/api/products`
-  );
+  const res = await fetch(`${Https}/api/products`);
   const { data } = await res.json();
   return { Data: data };
 };

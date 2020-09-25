@@ -4,6 +4,7 @@ import fetch from "isomorphic-unfetch";
 import { Table, Button, Popconfirm } from "antd";
 import { useRouter } from "next/router";
 const Https = "https://harrys-app-clone.vercel.app";
+// const Https = "http://localhost:3000";
 
 const UserTable = (props) => {
   const [isDeleting, setIsDeleting] = useState(false);

@@ -7,8 +7,9 @@ import Layout from "../../components/Layout";
 import UploadImage from "../formEdit/UploadImage";
 
 const Https = "https://harrys-app-clone.vercel.app";
+// const Https = "http://localhost:3000";
 
-const EditProduct = ({ product }) => {
+const EditProduct = ({product}) => {
   const [dataTime] = useState(new Date().toLocaleDateString("en-GB"));
   const [form, setForm] = useState({
     index: 1,
@@ -19,6 +20,7 @@ const EditProduct = ({ product }) => {
     price: product.price,
     date: dataTime,
   });
+  console.log(form)
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState({});
   const router = useRouter();
@@ -87,26 +89,26 @@ const EditProduct = ({ product }) => {
 
   //upload image
   const uploadImage = async (item) => {
-    const data = new FormData();
+    // const data = new FormData();
 
-    data.append("file", item);
-    data.append("upload_preset", "harrys");
-    const res = await fetch(
-      "https://api.cloudinary.com/v1_1/codersx-sora/image/upload",
-      {
-        method: "POST",
-        body: data,
-      }
-    );
-    const file = await res.json();
-    currentImage.url = file.url;
-    currentImage.public_id = file.public_id;
-    currentImage.alt = file.original_filename;
-    setCurrentImage({...currentImage})
-    form.imgUrl.push(currentImage)
-    setForm({
-      ...form
-    });
+    // data.append("file", item);
+    // data.append("upload_preset", "harrys");
+    // const res = await fetch(
+    //   "https://api.cloudinary.com/v1_1/codersx-sora/image/upload",
+    //   {
+    //     method: "POST",
+    //     body: data,
+    //   }
+    // );
+    // const file = await res.json();
+    // currentImage.url = file.url;
+    // currentImage.public_id = file.public_id;
+    // currentImage.alt = file.original_filename;
+    // setCurrentImage({...currentImage})
+    // form.imgUrl.push(currentImage)
+    // setForm({
+    //   ...form
+    // });
   };
 
   return (
@@ -219,7 +221,7 @@ const EditProduct = ({ product }) => {
             <h1>Products Gallery</h1>
             <div className="background-form">
               <Form.Item>
-                <UploadImage key={uploadImage} uploadImage={uploadImage}/>
+                <UploadImage key={form.imgUrl} uploadImage={uploadImage} item={form.imgUrl}/>
               </Form.Item>
             </div>
             
@@ -231,7 +233,7 @@ const EditProduct = ({ product }) => {
 };
 
 EditProduct.getInitialProps = async ({query: {id}}) => {
-  const res = await fetch(`${Https}/${id}`);
+  const res = await fetch(`${Https}/api/products/${id}`);
   const { data } = await res.json();
 
   return { product: data };

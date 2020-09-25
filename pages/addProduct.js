@@ -6,6 +6,7 @@ import { Button, Form, Input, Row, Col, Spin, Alert } from "antd";
 import { useRouter } from "next/router";
 import RichText from "./forms/RichText";
 const Https = "https://harrys-app-clone.vercel.app";
+// const Https = "http://localhost:3000";
 
 const AddProduct = ({ products }) => {
   const initialImage = {
@@ -36,6 +37,7 @@ const AddProduct = ({ products }) => {
     if (isSubmitting) {
       if (Object.keys(errors).length === 0) {
         createProduct();
+        console.log(form)
         alert('Success');
         
       } else {
@@ -55,7 +57,7 @@ const AddProduct = ({ products }) => {
         },
         body: JSON.stringify(form),
       });
-      router.push("/");
+      router.push(`/${products[products.length - 1]._id}/view`);
     } catch (error) {
       console.log(error);
     }

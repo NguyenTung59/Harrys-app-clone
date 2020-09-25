@@ -12,7 +12,7 @@ function getBase64(file) {
   });
 }
 
-const PicturesWall = ({uploadImage}) => {
+const PicturesWall = ({ uploadImage}) => {
   const [previewVisible, setPreviewVisible] = useState(false);
   const [previewImage, setPreviewImage] = useState("");
   const [previewTitle, setPreviewTitle] = useState("");
@@ -44,6 +44,7 @@ const PicturesWall = ({uploadImage}) => {
   );
   return (
     <>
+      <div>Click view the photo to make sure you select it </div>
       <Upload
           action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
           listType="picture-card"

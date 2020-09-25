@@ -25,6 +25,7 @@ const PicturesWall = ({uploadImage}) => {
   const handlePreview = async (file) => {
     if (!file.url && !file.preview) {
       file.preview = await getBase64(file.originFileObj);
+      console.log(file.originFileObj)
       uploadImage(file.originFileObj)
     }
     setPreviewImage(file.url || file.preview);
@@ -35,7 +36,7 @@ const PicturesWall = ({uploadImage}) => {
   };
 
   // handle upload Image
-	const handleChange = (e) => {  
+	const handleChange = (e) => { 
     setFileList(e.fileList)
   };
 
@@ -47,6 +48,7 @@ const PicturesWall = ({uploadImage}) => {
   );
   return (
     <>
+      <div>Click view the photo to make sure you select it </div>
       <Upload
           action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
           listType="picture-card"
