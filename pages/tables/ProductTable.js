@@ -49,7 +49,7 @@ const UserTable = (props) => {
       title: "Name",
       dataIndex: "name",
       key: "name",
-      render: (text) => <a href="/">{text}</a>,
+      render: (text, record) => <a href={`/${record._id}/view`}>{text}</a>,
     },
     {
       title: "Date",
