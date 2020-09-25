@@ -47,7 +47,7 @@ const PicturesWall = ({uploadImage}) => {
   );
   return (
     <>
-      {fileList ? null : <div>Click view the photo to make sure you select it </div>}
+          {fileList.length > 0 ? <div>Click view the photo to make sure you select it </div> : null}
       <Upload
           action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
           listType="picture-card"

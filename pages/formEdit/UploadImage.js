@@ -12,7 +12,7 @@ function getBase64(file) {
   });
 }
 
-const PicturesWall = ({ uploadImage}) => {
+const PicturesWall = ({ uploadImage }) => {
   const [previewVisible, setPreviewVisible] = useState(false);
   const [previewImage, setPreviewImage] = useState("");
   const [previewTitle, setPreviewTitle] = useState("");
@@ -23,7 +23,7 @@ const PicturesWall = ({ uploadImage}) => {
   const handlePreview = async (file) => {
     if (!file.url && !file.preview) {
       file.preview = await getBase64(file.originFileObj);
-      uploadImage(file.originFileObj)
+      uploadImage(file.originFileObj);
     }
     setPreviewImage(file.url || file.preview);
     setPreviewVisible(true);
@@ -33,8 +33,8 @@ const PicturesWall = ({ uploadImage}) => {
   };
 
   const handleChange = (e) => {
-    setFileList(e.fileList)
-	};
+    setFileList(e.fileList);
+  };
 
   const uploadButton = (
     <div>
@@ -44,24 +44,26 @@ const PicturesWall = ({ uploadImage}) => {
   );
   return (
     <>
-      {fileList ? null : <div>Click view the photo to make sure you select it </div>}
+      {fileList.length > 0 ? (
+        <div>Click view the photo to make sure you select it </div>
+      ) : null}
       <Upload
-          action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-          listType="picture-card"
-          fileList={fileList}
-          type="file"
-          name="file"
-          onPreview={handlePreview}
-          onChange={handleChange}
-        >
-          {fileList.length >= 8 ? null : uploadButton}
-        </Upload>
-        <Modal
-          visible={previewVisible}
-          title={previewTitle}
-          footer={null}
-          onCancel={handleCancel}
-        >
+        action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+        listType="picture-card"
+        fileList={fileList}
+        type="file"
+        name="file"
+        onPreview={handlePreview}
+        onChange={handleChange}
+      >
+        {fileList.length >= 8 ? null : uploadButton}
+      </Upload>
+      <Modal
+        visible={previewVisible}
+        title={previewTitle}
+        footer={null}
+        onCancel={handleCancel}
+      >
         <img alt="example" style={{ width: "100%" }} src={previewImage} />
       </Modal>
     </>
